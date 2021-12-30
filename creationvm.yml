@@ -98,13 +98,13 @@ steps:
     commands: 'sudo usermod -aG sudo azureuser'
     readyTimeout: '20000'
 
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'id_rsa'
-    runOptions: 'commands'
-    commands: '/home/azureuser/vsts/work/1/s/docker-compose.yml'
-    failOnStdErr: false
-    readyTimeout: '20000'
+#- task: SSH@0
+#  inputs:
+#    sshEndpoint: 'id_rsa'
+#    runOptions: 'commands'
+#    commands: '/home/azureuser/vsts/work/1/s/docker-compose.yml'
+#    failOnStdErr: false
+#    readyTimeout: '20000'
 
 #- task: DockerCompose@0
 #  inputs:
