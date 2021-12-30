@@ -112,3 +112,9 @@ steps:
 #    azureSubscription: 'Azure subscription 1(783128f5-f4d2-4f2c-bfe4-1d2af23c8de0)'
 #    dockerComposeFile: '/home/asureuser/vsts/work/1/s/docker-compose.yml'
 #    action: 'Run services'
+- task: DockerCompose@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryEndpoint: 'dockkafkacr'
+    dockerComposeFile: '/hpme/azureuser/vsts/work/1/s/docker-compose.yml'
+    action: 'Run services'
