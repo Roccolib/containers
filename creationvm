@@ -1,0 +1,114 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, vous!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: InstallSSHKey@0
+  inputs:
+    knownHostsEntry: 'vm2v8'
+    sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAoMnOxrgdxnn7Xe82EwWnccjVqURYn/U3apQS8//ofPYPiIb3HB8NUVXLA/J/TZODJvWKaPSFDa+pYLZ+nGIm4FItjYFkZHMgT4lbhyIQxX/2/pdbK4RLjLB9VMlMB+KgdeTfyU9okWCLG8br3ZuHv5P/stxPqBq3j5utGdQMNaoFfkymjmz6jd9jvJMLlSb/zzCPNQHphcKZw5K+ogM0bOoIEWvvoefAM8ZVL2zDvxLvyE4SmfA1/DZnAD/ztWsClfuKtUliCIyAE0INS2sAScK3+VDHfW60v2zv0BAutWWg556jqIOIt64uwI8DTyat4mehAIBKjFw38HYO5Gj2TQ== rsa-key-20201009'
+    sshKeySecureFile: 'privKey.ppk'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Azure subscription 1(783128f5-f4d2-4f2c-bfe4-1d2af23c8de0)'
+    subscriptionId: '783128f5-f4d2-4f2c-bfe4-1d2af23c8de0'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'vm-kafka3_group'
+    location: 'UK South'
+    templateLocation: 'Linked artifact'
+    csmFile: 'template.json'
+    csmParametersFile: 'parameters.json'
+    deploymentMode: 'Incremental'
+
+- task: AzureVirtualMachineManagerTask@1
+  inputs:
+    Action: 'Start VM'
+    azureSubscription: 'Azure subscription 1(783128f5-f4d2-4f2c-bfe4-1d2af23c8de0)'
+    ResourceGroupName: 'vm-kafka3_group'
+    VmName: 'vm2v8g'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'id_rsa'
+    runOptions: 'commands'
+    commands: 'sudo snap install docker'
+    readyTimeout: '20000'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo  'Build.ArtifactStagingDirectory'
+      dir
+      dir '/home/vsts/work/1/s'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: $(Build.SourcesDirectory)
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'v2v8'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+             
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'v2v8'
+    downloadPath: '$(System.ArtifactsDirectory)'
+    cleanDestinationFolder: false
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'id_rsa'
+    sourceFolder: '/home/vsts/work/1/s'
+    contents: 'docker-compose.yml'
+    targetFolder: '/home/azureuser/vsts/work/1/s'
+    readyTimeout: '20000'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'id_rsa'
+    runOptions: 'commands'
+    commands: 'sudo chmod +x /home/azureuser/vsts/work/1/s/docker-compose.yml'
+    readyTimeout: '20000'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'id_rsa'
+    runOptions: 'commands'
+    commands: 'sudo usermod -aG sudo azureuser'
+    readyTimeout: '20000'
+
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'id_rsa'
+    runOptions: 'commands'
+    commands: '/home/azureuser/vsts/work/1/s/docker-compose.yml'
+    failOnStdErr: false
+    readyTimeout: '20000'
+
+#- task: DockerCompose@0
+#  inputs:
+#    containerregistrytype: 'Azure Container Registry'
+#    azureSubscription: 'Azure subscription 1(783128f5-f4d2-4f2c-bfe4-1d2af23c8de0)'
+#    dockerComposeFile: '/home/asureuser/vsts/work/1/s/docker-compose.yml'
+#    action: 'Run services'
