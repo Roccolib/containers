@@ -7,13 +7,13 @@ metadata:
 spec:
   group: kafka.strimzi.io
   versions:
-  - name: v1beta1
+  - name: v1
     served: true
     storage: true
   - name: v1alpha1
     served: true
     storage: false
-  version: v1beta1
+  version: v1
   scope: Namespaced
   names:
     kind: Kafka
@@ -3672,13 +3672,13 @@ metadata:
 spec:
   group: kafka.strimzi.io
   versions:
-  - name: v1beta1
+  - name: v1
     served: true
     storage: true
   - name: v1alpha1
     served: true
     storage: false
-  version: v1beta1
+  version: v1
   scope: Namespaced
   names:
     kind: KafkaUser
@@ -4241,13 +4241,13 @@ metadata:
 spec:
   group: kafka.strimzi.io
   versions:
-  - name: v1beta1
+  - name: v1
     served: true
     storage: true
   - name: v1alpha1
     served: true
     storage: false
-  version: v1beta1
+  version: v1
   scope: Namespaced
   names:
     kind: KafkaTopic
@@ -5014,13 +5014,13 @@ metadata:
 spec:
   group: kafka.strimzi.io
   versions:
-  - name: v1beta1
+  - name: v1
     served: true
     storage: true
   - name: v1alpha1
     served: true
     storage: false
-  version: v1beta1
+  version: v1
   scope: Namespaced
   names:
     kind: KafkaConnectS2I
@@ -5916,13 +5916,13 @@ metadata:
 spec:
   group: kafka.strimzi.io
   versions:
-  - name: v1beta1
+  - name: v1
     served: true
     storage: true
   - name: v1alpha1
     served: true
     storage: false
-  version: v1beta1
+  version: v1
   scope: Namespaced
   names:
     kind: KafkaConnect
@@ -6807,13 +6807,13 @@ metadata:
 spec:
   group: kafka.strimzi.io
   versions:
-  - name: v1beta1
+  - name: v1
     served: true
     storage: true
   - name: v1alpha1
     served: true
     storage: false
-  version: v1beta1
+  version: v1
   scope: Namespaced
   names:
     kind: KafkaMirrorMaker
