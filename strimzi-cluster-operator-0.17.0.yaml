@@ -9088,5 +9088,3 @@ spec:
                     type: string
             observedGeneration:
               type: integer
-
----
