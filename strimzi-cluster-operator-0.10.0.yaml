@@ -1,4 +1,4 @@
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkas.kafka.strimzi.io
@@ -2093,7 +2093,7 @@ spec:
           - zookeeper
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: strimzi-cluster-operator-entity-operator-delegation
@@ -2109,7 +2109,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: strimzi-cluster-operator
@@ -2125,7 +2125,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: strimzi-cluster-operator-topic-operator-delegation
@@ -2141,7 +2141,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkausers.kafka.strimzi.io
@@ -2236,7 +2236,7 @@ spec:
           - authentication
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: strimzi-entity-operator
@@ -2286,7 +2286,7 @@ rules:
   - delete
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: strimzi-cluster-operator-global
@@ -2305,7 +2305,7 @@ rules:
   - update
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: strimzi-cluster-operator-kafka-broker-delegation
@@ -2321,7 +2321,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: strimzi-cluster-operator
@@ -2337,7 +2337,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: strimzi-cluster-operator-namespaced
@@ -2591,7 +2591,7 @@ rules:
   - update
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: strimzi-topic-operator
@@ -2626,7 +2626,7 @@ metadata:
     app: strimzi
 
 ---
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: strimzi-kafka-broker
@@ -2641,7 +2641,7 @@ rules:
   - get
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkatopics.kafka.strimzi.io
@@ -2680,7 +2680,7 @@ spec:
           - replicas
 
 ---
-apiVersion: extensions/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: strimzi-cluster-operator
@@ -2766,7 +2766,7 @@ spec:
     type: Recreate
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkaconnects2is.kafka.strimzi.io
@@ -3322,7 +3322,7 @@ spec:
           - bootstrapServers
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkaconnects.kafka.strimzi.io
@@ -3876,7 +3876,7 @@ spec:
           - bootstrapServers
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkamirrormakers.kafka.strimzi.io
