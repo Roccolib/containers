@@ -141,7 +141,7 @@ spec:
                               type: boolean
                             introspectionEndpointUrl:
                               type: string
-                            jwksEndpointUri:
+                            jwksEndpointUrl:
                               type: string
                             jwksRefreshSeconds:
                               type: integer
