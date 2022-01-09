@@ -139,7 +139,7 @@ spec:
                               - secretName
                             disableTlsHostnameVerification:
                               type: boolean
-                            introspectionEndpointUri:
+                            introspectionEndpointUrl:
                               type: string
                             jwksEndpointUri:
                               type: string
