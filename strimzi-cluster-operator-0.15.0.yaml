@@ -145,7 +145,7 @@ spec:
                               type: string
                             jwksExpirySeconds:
                               type: integer
-                              minimum: 1
+                            minimum: 1
                             jwksRefreshSeconds:
                               type: integer
                               minimum: 1
