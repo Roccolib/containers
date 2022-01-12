@@ -1,0 +1,51 @@
+az group create--name=vm-kafka3_group--location=centralus--output table
+
+az network vnet create--resource-group vm-kafka3_group--name kafkanet--address-prefixes 10.0.0.0/8--subnet-name SUBkafka--subnet-prefix 10.240.0.0/16
+
+SP_PASSWD=$(az ad sp create-for-rbac --name ServPrincKafka --role Contributor --scopes $VNET_ID --query password --output tsv)
+SP_ID=$(az ad sp show --id http://ServPrincKafka --query appId --output tsv)
+
+ "appId": "298781e4-8133-40cf-b9ad-8ee38518d76b",
+  "displayName": "azure-cli-2022-01-10-10-54-29",
+  "name": "298781e4-8133-40cf-b9ad-8ee38518d76b",
+  "password": "ZgUx-Gf8-p6iE5GK6hCdBQGNMp1lvxfjNM",
+  "tenant": "c1da6d3c-9aaf-46b1-8186-f85de67adc9d"
+
+
+az role assignment create --assignee $93b87149-bae1-4928-8bf1-1ac675ffa74d --scope /subscriptions/$783128f5-f4d2-4f2c-bfe4-1d2af23c8de0/resourceGroups/$vm-kafka3_group --role Contributor
+
+az ad sp create-for-rbac --scope /subscriptions/$Azure subscription 1/resourceGroups/$vm-kafka3_group --role Contributor
+
+curl -L https://github.com/strimzi/strimzi-kafka-operator/releases/download/0.15.0/strimzi-cluster-operator-0.15.0.yaml | sed 's/namespace: .*/namespace: tls-kafka/' | kubectl apply -f - -n tls-kafka
+curl https://gist.github.com/agrajm/d1fed2473e1ac05e56853f86fb75b82e#file-tls-kafka-yaml -o tls-kafka.yaml
+curl https://gist.github.com/agrajm/36c9e0f70a21ad12b7cd131d206fc51c#file-kafka-topics-yaml -o kafka-topics.yaml
+az aks get-upgrades --resource-group vm-kafka3_group --name kuberakskafka --output table
+az aks get-credentials --resource-group vm4 --name kub4akskafka
+kubectl get pods -n tls-kafka
+
+Name     ResourceGroup    MasterVersion    Upgrades
+-------  ---------------  ---------------  --------------
+default  vm-kafka3_group  1.21.7           1.22.2, 1.22.4
+az aks install-cli --install-location ~/home/mx/kafka
+server: https://kuberakskafka-dns-8e24a2f0.hcp.uksouth.azmk8s.io:443
+  name: kuberakskafka
+
+az aks upgrade --resource-group vm-kafka3_group --name kuberakskafka
+az aks get-upgrades --resource-group vm-kafka3_group --name kuberakskafka --output table
+az vm list-usage --location northeurope --output table 
+az aks upgrade --resource-group vm-kafka3_group --name kuberakskafka --kubernetes-version 1.22.4
+
+kubectl -n tls-kafka exec -it kafkaclient-0 -- bash
+
+kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+
+list root dir of kafkaclient-0 : kubectl exec -it kafkaclient-0 -- /bin/bash -c "ls /"
+
+kubectl exec -it kafkaclient-0 -- /bash
+
+kafka-console-producer.sh --broker-list my-tls-cluster-kafka-bootstrap.tls-kafka:9093 --topic test --producer.config /opt/kafka/config/ssl-config.properties
+kubectl -n tls-kafka exec -it kafkaclient-0 -- bash
+
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 648ACFD622F3D138  
+0E98404D386FA1D9 NO_PUBKEY 605C66F00D6C9793
+kubectl -n tls-kafka exec -it kafkaclient-0 -- bin/kafka-console-consumer.sh --bootstrap-server my-tls-cluster-kafka-bootstrap.tls-kafka:9093 --topic test --from-beginning --consumer.config /opt/kafka/config/ssl-config.properties
