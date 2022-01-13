@@ -1,0 +1,57 @@
+procedures :
+1. creation d'un cluster sur PortalAzure :
+	a. recherche de "Kubernetes services", cliquez sur iconne "KS"
+	b. dans "Create3, cliquer sur "Create a Kubernetes cluster"
+	Dans onglet "basic" :
+		ba. choisir/ou creer une "Souscription"
+		bb. choisir ou creer un "Resource group"
+		bc. annoncer un nom pour "Kubernetes cluster name"
+		bd. choisir une "Region"
+		be. definir la derniere version "1.22.4" de "Kubernetes version" IMPORTANT !
+	Dans onglet "Networking" :
+		bf. dans "Network configuration" choisir "Azure CNI"
+		bg. dans "Virtual network", choisir/ou create new network
+		bh. dans "Network policy" choisir "Calico"
+	Dans "Integration" : 
+		bi. dans "Container registry" choisir/ou Create new name
+	Enfin, cliquer sur "Review + create" puis "Create"
+
+2. dans "Kubernetes services", selectionner la resource fraichement crée :
+
+3. Cliquer en haut a droite sur l'icone "Cloud Shell"
+
+4. dans le shell, se connecter avec la commande : "az aks get-credentials --resource-group vm4 --name kub4akskafka"
+
+5. Créer le "Namespace" avec la commande : "kubectl create namespace tls-kafka"
+
+6. Installer l'opérateur "Strimzi" avec la commande : "curl -L https://github.com/strimzi/strimzi-kafka-operator/releases/download/0.15.0/strimzi-cluster-operator-0.15.0.yaml | sed 's/namespace: .*/namespace: tls-kafka/' | kubectl apply -f - -n tls-kafka"
+
+7. Verifier que le pods Strimzi est en cours : "kubectl get pods -n tls-kafka"
+
+9. Création du cluster "Kafka" avec la commande : "kubectl apply -f tls-kafka.yaml -n tls-kafka"
+
+10. Vérificaztion de la création des clusters avec commande : "kubectl get pod -n tls-kafka"
+
+11. Vérification des IP et ports utilisés avec commande : "kubectl get svc -n tls-kafka"
+
+12. Activation de l'authentification : "kubectl get secret my-tls-cluster-cluster-ca-cert -n tls-kafka -o yaml" 
+
+13. Création de deux topics (test et test-one-rep) : "kubectl apply -f kafka-topics.yaml -n tls-kafka"
+
+14. Vérification de l'existance des topics : "kubectl get kafkatopics -n tls-kafka"
+
+15. Création de l'utilisateur "my-user" : "kubectl apply -f kafka-users.yaml -n tls-kafka"
+
+16. Création des clients kafka (producer et consumer)  : "kubectl apply -f kafka-client.yaml -n tls-kafka"
+
+17. Vérification de la création des 3 replicas : "kubectl get pods -n tls-kafka  -l app=kafkaclient"
+
+18. Produce and consume ! : "kubectl -n tls-kafka exec -- run_the_script.sh" mauvais !!!
+
+19. Lancer le producteur : "kubectl -n tls-kafka exec -it kafkaclient-0 -- bin/kafka-console-producer.sh --broker-list my-tls-cluster-kafka-bootstrap.tls-kafka:9093 --topic test --producer.config /opt/kafka/config/ssl-config.properties"
+
+20.Lancer le consumer : "kubectl -n tls-kafka exec -it kafkaclient-0 -- bin/kafka-console-consumer.sh --bootstrap-server my-tls-cluster-kafka-bootstrap.tls-kafka:9093 --topic test --from-beginning --consumer.config /opt/kafka/config/ssl-config.properties"
+
+
+annexes :
+acceder au bash d'un pod : "kubectl -n tls-kafka exec -it kafkaclient-0 -- bash"
