@@ -46,7 +46,7 @@ procedures :
 
 17. Vérification de la création des 3 replicas : "kubectl get pods -n tls-kafka  -l app=kafkaclient"
 
-18. Produce and consume ! : "kubectl -n tls-kafka exec -- run_the_script.sh" mauvais !!!
+18. Produce and consume ! : "bash run_the_script.sh"
 
 19. Lancer le producteur : "kubectl -n tls-kafka exec -it kafkaclient-0 -- bin/kafka-console-producer.sh --broker-list my-tls-cluster-kafka-bootstrap.tls-kafka:9093 --topic test --producer.config /opt/kafka/config/ssl-config.properties"
 
