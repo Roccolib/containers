@@ -28,7 +28,9 @@ procedures :
 
 7. Verifier que le pods Strimzi est en cours : "kubectl get pods -n tls-kafka"
 
-8. Télécharger les fichiers necessaires : "curl -O https://github.com/Roccolib/containers/blob/main/tls-kafka.yaml -O https://github.com/Roccolib/containers/blob/main/kafka-topics.yaml -O https://github.com/Roccolib/containers/blob/main/kafka-users.yaml -O https://github.com/Roccolib/containers/blob/main/kafka-client.yaml -O https://github.com/Roccolib/containers/blob/main/setup_ssl.sh -O https://github.com/Roccolib/containers/blob/main/run_the_script_sh -O https://github.com/Roccolib/containers/blob/main/sources.list"
+8. Télécharger les fichiers necessaires : 
+	a. cloner le dossier "containers" avec la commande : "git clone https://github.com/Roccolib/containers archives"
+	b. copier les fichiers clonés dans le répertoire de travail : "cp -a /home/mx/archives/. /home/mx/"
 
 9. Création du cluster "Kafka" avec la commande : "kubectl apply -f tls-kafka.yaml -n tls-kafka"
 
