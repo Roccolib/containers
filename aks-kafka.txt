@@ -1,7 +1,0 @@
-https://github.com/Roccolib/containers/blob/main/tls-kafka.yaml
-https://github.com/Roccolib/containers/blob/main/kafka-topics.yaml
-https://github.com/Roccolib/containers/blob/main/kafka-users.yaml
-https://github.com/Roccolib/containers/blob/main/kafka-client.yaml
-https://github.com/Roccolib/containers/blob/main/setup_ssl.sh
-https://github.com/Roccolib/containers/blob/main/run_the_script.sh
-https://github.com/Roccolib/containers/blob/main/sources.list
