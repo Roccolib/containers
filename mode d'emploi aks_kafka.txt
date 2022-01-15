@@ -59,3 +59,4 @@ procedures :
 
 annexes :
 acceder au bash d'un pod : "kubectl -n tls-kafka exec -it kafkaclient-0 -- bash"
+en cas de reboot du cluster, tapepr commande : "bash run_the_script.sh" puis 19. "lancer le producteur" ou 20. "lancer le consumer"
