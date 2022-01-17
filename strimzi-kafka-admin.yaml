@@ -1,0 +1,13 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaUser
+metadata:
+  name: strimzi-kafka-admin
+  namespace: tls-kafka
+  labels:
+    strimzi.io/cluster: kuberakskafka
+spec:
+  authentication:
+    type: tls
+#  authorization:
+#    type: simple
+# ...
