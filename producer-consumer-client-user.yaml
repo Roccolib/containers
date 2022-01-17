@@ -2,9 +2,9 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaUser
 metadata:
   name: producer-consumer-client-user
-  namespace: kafka
+  namespace: tls-kafka
   labels:
-    strimzi.io/cluster: my-cluster
+    strimzi.io/cluster: kuberakskafka
 spec:
   authentication:
     type: tls
