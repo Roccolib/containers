@@ -1,4 +1,4 @@
-apiVersion: apiextensions.k8s.io/v1beta2
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkas.kafka.strimzi.io
@@ -6281,7 +6281,7 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkausers.kafka.strimzi.io
@@ -6962,7 +6962,7 @@ spec:
             description: The status of the Kafka User.
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkarebalances.kafka.strimzi.io
@@ -7230,7 +7230,7 @@ spec:
     type: Recreate
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkamirrormaker2s.kafka.strimzi.io
@@ -9550,7 +9550,7 @@ rules:
       - get
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkatopics.kafka.strimzi.io
@@ -9847,7 +9847,7 @@ spec:
             description: The status of the topic.
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkabridges.kafka.strimzi.io
@@ -10901,7 +10901,7 @@ spec:
             description: The status of the Kafka Bridge.
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkaconnectors.kafka.strimzi.io
@@ -11021,7 +11021,7 @@ spec:
             description: The status of the Kafka Connector.
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkaconnects2is.kafka.strimzi.io
@@ -12921,7 +12921,7 @@ spec:
             description: The status of the Kafka Connect Source-to-Image (S2I) cluster.
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkaconnects.kafka.strimzi.io
@@ -14802,7 +14802,7 @@ spec:
             description: The status of the Kafka Connect cluster.
 
 ---
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: kafkamirrormakers.kafka.strimzi.io
