@@ -24,7 +24,7 @@ procedures :
 
 5. Créer le "Namespace" avec la commande : "kubectl create namespace tls-kafka"
 
-6. Installer l'opérateur "Strimzi" avec la commande : "curl -L https://github.com/strimzi/strimzi-kafka-operator/releases/download/0.15.0/strimzi-cluster-operator-0.15.0.yaml | sed 's/namespace: .*/namespace: tls-kafka/' | kubectl apply -f - -n tls-kafka"
+6. Installer l'opérateur "Strimzi" avec la commande : "curl -L https://github.com/strimzi/strimzi-kafka-operator/releases/download/0.23.0/strimzi-cluster-operator-0.23.0.yaml | sed 's/namespace: .*/namespace: tls-kafka/' | kubectl apply -f - -n tls-kafka"
 
 7. Verifier que le pods Strimzi est en cours : "kubectl get pods -n tls-kafka"
 
