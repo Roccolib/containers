@@ -1,0 +1,18 @@
+Example 1, converts a YAML file and displays the output, though the file does not change:
+
+bin/api-conversion.sh convert-file --file input.yaml
+
+
+Example 2, converts a YAML file, and writes the changes into the original source file:
+
+bin/api-conversion.sh convert-file --file input.yaml --in-place
+
+
+Example 3, converts a YAML file, and writes the changes into a new output file:
+
+bin/api-conversion.sh convert-file --file input.yaml --output output.yaml
+
+
+Update the custom resources using the converted configuration file.
+
+oc apply -f CONVERTED-CONFIG-FILE
