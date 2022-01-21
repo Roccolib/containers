@@ -32,7 +32,7 @@ procedures :
 	a. cloner le dossier "containers" avec la commande : "git clone https://github.com/Roccolib/containers archives"
 	b. copier les fichiers clonés dans le répertoire de travail : "cp -a /home/mx/archives/. /home/mx/"
 	c. maj fichiers v1 : "bin/api-conversion.sh convert-file --file tls-kafka.yaml" ; "bin/api-conversion.sh convert-file --file kafka-topics.yaml" ; "bin/api-conversion.sh convert-file --file kafka-users.yaml"
-	d. maj client apps/v1 :"kubectl-convert -f kafka-client.yaml --output-version apps/v1"
+	d. maj client apps/v1 :"kubectl-convert -f kafka-client.yaml --output-version apps/v1beta2"
 
 9. Création du cluster "Kafka" avec la commande : "kubectl apply -f tls-kafka.yaml -n tls-kafka"
 
