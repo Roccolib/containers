@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kafkaclient
+  name: kafkaclient
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: kafkaclient
+  serviceName: kafkaclient
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: kafkaclient
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - kafka
+            topologyKey: kubernetes.io/hostname
+      containers:
+      - command:
+        - sh
+        - -c
+        - exec tail -f /dev/null
+        env:
+        - name: CA_CRT
+          valueFrom:
+            secretKeyRef:
+              key: ca.crt
+              name: my-tls-cluster-cluster-ca-cert
+        - name: USER_CRT
+          valueFrom:
+            secretKeyRef:
+              key: user.crt
+              name: my-user
+        - name: USER_KEY
+          valueFrom:
+            secretKeyRef:
+              key: user.key
+              name: my-user
+        image: solsson/kafka:0.11.0.0
+        imagePullPolicy: IfNotPresent
+        name: kafka
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  updateStrategy:
+    type: OnDelete
+status:
+  availableReplicas: 0
+  replicas: 0
