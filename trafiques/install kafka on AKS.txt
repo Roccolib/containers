@@ -1,0 +1,62 @@
+procedures :
+1. creation d'un cluster sur PortalAzure :
+	a. recherche de "Kubernetes services", cliquez sur iconne "KS"
+	b. dans Create, cliquer sur "Create a Kubernetes cluster"
+	Dans onglet "basic" :
+		ba. choisir/ou creer une "Souscription" 
+		bb. choisir ou creer un "Resource group"
+		bc. annoncer un nom pour "Kubernetes cluster name"
+		bd. choisir une "Region"
+		be. definir la derniere version "1.22.4" de "Kubernetes version" IMPORTANT !
+	Dans onglet "authetication" :
+		bf. dans "RBAC", choisir "Enabled"
+		bg. dans AKS managed AAD, choisir "Enabled"
+		bh. valider le tout
+	Dans onglet "Networking" :
+		bi. dans "Network configuration" choisir "Azure CNI"
+		bj. dans "Virtual network", choisir/ou create new network
+	Dans "Integration" : 
+		bk. dans "Container registry" choisir/ou Create new name
+		bl. dans "container monitoring" choisir "Disable"
+		bm. dans "Azure Policy" choisir "Disable"
+	Enfin, cliquer sur "Review + create" puis "Create"
+2. dans "Kubernetes services", selectionner la resource fraichement crée :
+
+3. Cliquer en haut a droite sur l'icone "Cloud Shell"
+
+4. dans le shell, se connecter avec la commande : "az aks get-credentials --resource-group vm4 --name kubeakskafka"
+
+5. Créer le "Namespace" avec la commande : "kubectl create namespace tls-kafka"
+
+6. Upgrader la version de strimzi : "helm install strimzi strimzi/strimzi-kafka-operator --namespace tls-kafka"
+
+7. Télécharger les fichiers necessaires : 
+	a. cloner le dossier "containers" avec la commande : "git clone https://github.com/Roccolib/containers archives"
+	b. copier les fichiers clonés dans le répertoire de travail : "cp -a /home/mx/archives/. /home/mx/"
+
+8. Installer l'opérateur Strimzi avec la commande : "kuberctl apply -f kafka.yaml -n tls-kafka"
+
+9. Vérification de la création des clusters avec commande : "kubectl get pod -n tls-kafka"
+
+10. Vérification des IP et ports utilisés avec commande : "kubectl get svc -n tls-kafka"
+
+11. Installer utilisateur : "kuberctl apply -f kafka-user.yaml -n tls-kafka"
+
+12. verification du cluster Kafka : "kubectl get kafka"
+
+13. Listing des topics : "kubectl get kafkatopics"
+
+14. demarrage du Cloudshell de Producer : "kubectl -n tls-kafka run kafka-producer -it --image=quay.io/strimzi/kafka:0.22.1-kafka-2.7.0 --rm=true --restart=Never -- bin/kafka-console-producer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic"
+
+15. Démarrage du cloudshell de Consumer : "kubectl -n tls-kafka run kafka-consumer -it --image=quay.io/strimzi/kafka:0.22.1-kafka-2.7.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic --from-beginning"
+
+16. Vérification que Producer est actif : "kubectl get pod kafka-producer"
+
+17. Vérification que Consumer est actif : "kubectl get pod kafka-consumer"
+
+18. install repos de Discourse Forum : "helm repo add bitnami https://charts.bitnami.com/bitnami"
+
+19. install le forum Discourse : "helm install my-release bitnami/discourse"
+
+
+
