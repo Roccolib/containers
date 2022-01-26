@@ -58,5 +58,6 @@ procedures :
 
 19. install le forum Discourse : "helm install my-release bitnami/discourse"
 
-
+nb :
+1. creer un pod avec l'image de nginx : "kubectl run nginx --image=nginx --restart=Never"
 
