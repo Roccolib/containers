@@ -24,7 +24,7 @@ procedures :
 
 3. Cliquer en haut a droite sur l'icone "Cloud Shell"
 
-4. dans le shell, se connecter avec la commande : "az aks get-credentials --resource-group vm4 --name kubeakskafka"
+4. dans le shell, se connecter avec la commande : "az aks get-credentials --resource-group vm4 --name kubeakskafka --admin"
 
 5. Créer le "Namespace" avec la commande : "kubectl create namespace tls-kafka"
 
