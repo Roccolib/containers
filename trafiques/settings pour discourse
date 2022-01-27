@@ -1,0 +1,38 @@
+APP VERSION: 2.7.13
+
+** Please be patient while the chart is being deployed **###############################################################################
+### ERROR: You did not provide an external host in your 'helm install' call ###
+###############################################################################
+
+This deployment will be incomplete until you configure Discourse with a resolvable host. To configure Discourse with the URL of your service:
+
+1. Get the discourse URL by running:
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        Watch the status with: 'kubectl get svc --namespace tls-kafka -w my-release-discourse'
+
+  export DISCOURSE_HOST=$(kubectl get svc --namespace tls-kafka my-release-discourse --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{end }}")
+  export DISCOURSE_PASSWORD=$(kubectl get secret --namespace "tls-kafka" my-release-discourse-discourse -o jsonpath="{.data.discourse-password}" | base64 --decode)
+  export POSTGRESQL_PASSWORD=$(kubectl get secret --namespace "tls-kafka" my-release-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
+
+2. Complete your Discourse deployment by running:
+
+  helm upgrade --namespace tls-kafka my-release bitnami/discourse --set discourse.host=$DISCOURSE_HOST --set discourse.password=$DISCOURSE_PASSWORD --set postgresql.postgresqlPassword=$POSTGRESQL_PASSWORD
+
+#####################################################################################
+### WARNING: You did not change the default password for the PostgreSQL root user ###
+#####################################################################################
+
+
+** Please be patient while the chart is being deployed **1. Get the Discourse URL by running:
+
+  Discourse URL : http://CO2DISCOURSE/
+
+2. Get your Discourse login credentials by running:
+
+  Username: user
+  export DISCOURSE_PASSWORD=$(kubectl get secret --namespace "tls-kafka" my-release-discourse-discourse -o jsonpath="{.data.discourse-password}" | base64 --decode)
+  export POSTGRESQL_PASSWORD=$(kubectl get secret --namespace "tls-kafka" my-release-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
+
+discourse loggin : CO2DISCOURSE
+Pass : Olivier
+Posgres pass : Richard
