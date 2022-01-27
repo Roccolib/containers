@@ -40,7 +40,7 @@ procedures :
 
 10. Vérification des IP et ports utilisés avec commande : "kubectl get svc -n tls-kafka"
 
-11. Installer utilisateur : "kuberctl apply -f kafka-user.yaml -n tls-kafka"
+11. Installer utilisateur : "kubectl apply -f kafka-user.yaml -n tls-kafka"
 
 12. verification du cluster Kafka : "kubectl get kafka"
 
