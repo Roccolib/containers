@@ -42,22 +42,27 @@ procedures :
 
 11. Installer utilisateur : "kubectl apply -f kafka-user.yaml -n tls-kafka"
 
-12. verification du cluster Kafka : "kubectl get kafka"
+12. kubectl config set-context --current --namespace=tls-kafka
 
-13. Listing des topics : "kubectl get kafkatopics"
+13. verification du cluster Kafka : "kubectl get kafka"
 
-14. demarrage du Cloudshell de Producer : "kubectl -n tls-kafka run kafka-producer -it --image=quay.io/strimzi/kafka:0.22.1-kafka-2.7.0 --rm=true --restart=Never -- bin/kafka-console-producer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic"
+14. Listing des topics : "kubectl get kafkatopics"
 
-15. Démarrage du cloudshell de Consumer : "kubectl -n tls-kafka run kafka-consumer -it --image=quay.io/strimzi/kafka:0.22.1-kafka-2.7.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic --from-beginning"
+15. demarrage du Cloudshell de Producer : "kubectl -n tls-kafka run kafka-producer -it --image=quay.io/strimzi/kafka:0.22.1-kafka-2.7.0 --rm=true --restart=Never -- bin/kafka-console-producer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic"
 
-16. Vérification que Producer est actif : "kubectl get pod kafka-producer"
+16. Démarrage du cloudshell de Consumer : "kubectl -n tls-kafka run kafka-consumer -it --image=quay.io/strimzi/kafka:0.22.1-kafka-2.7.0 --rm=true --restart=Never -- bin/kafka-console-consumer.sh --bootstrap-server my-cluster-kafka-bootstrap:9092 --topic my-topic --from-beginning"
 
-17. Vérification que Consumer est actif : "kubectl get pod kafka-consumer"
+17. Vérification que Producer est actif : "kubectl get pod kafka-producer"
 
-18. install repos de Discourse Forum : "helm repo add bitnami https://charts.bitnami.com/bitnami"
+18. Vérification que Consumer est actif : "kubectl get pod kafka-consumer"
 
-19. install le forum Discourse : "helm install my-release bitnami/discourse"
+19. install repos de Discourse Forum : "helm repo add bitnami https://charts.bitnami.com/bitnami"
+
+20. install le forum Discourse : "helm install my-release bitnami/discourse"
 
 nb :
 1. creer un pod avec l'image de nginx : "kubectl run nginx --image=nginx --restart=Never"
+2. list opods from tls-kafka ns : "  kubectl get pods -n tls-kafka"
+3. list all namespaces : "kubectl get namespaces"
+4. list pods from all namespaces : "kubectl get pods --all-namespaces"
 
