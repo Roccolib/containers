@@ -34,7 +34,7 @@ procedures :
 	a. cloner le dossier "containers" avec la commande : "git clone https://github.com/Roccolib/containers archives"
 	b. copier les fichiers clonés dans le répertoire de travail : "cp -a /home/mx/archives/. /home/mx/"
 
-8. Installer l'opérateur Strimzi avec la commande : "kuberctl apply -f kafka.yaml -n tls-kafka"
+8. Installer l'opérateur Strimzi avec la commande : "kubectl apply -f kafka.yaml -n tls-kafka"
 
 9. Vérification de la création des clusters avec commande : "kubectl get pod -n tls-kafka"
 
