@@ -42,7 +42,7 @@ procedures :
 
 11. Installer utilisateur : "kubectl apply -f kafka-user.yaml -n tls-kafka"
 
-12. definir namespace : "kubectl config set-context --current --namespace=tls-kafka", puis certifier avec "kubectl config view --minify | grep namespace:"
+12. definir namespace : "kubectl config set-context --current --namespace=tls-kafka", puis certifier avec "kubectl config view --minify | grep namespace:tls-kafka"
 
 13. verification du cluster Kafka : "kubectl get kafka"
 
