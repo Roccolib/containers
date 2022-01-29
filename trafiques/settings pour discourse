@@ -32,7 +32,7 @@ This deployment will be incomplete until you configure Discourse with a resolvab
   Username: user
   export DISCOURSE_PASSWORD=$(kubectl get secret --namespace "tls-kafka" my-release-discourse-discourse -o jsonpath="{.data.discourse-password}" | base64 --decode)
   export POSTGRESQL_PASSWORD=$(kubectl get secret --namespace "tls-kafka" my-release-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
-
+helm install my-release --set discourse.username=admin,discourse.password=Olivier,postgresql.postgresqlPassword=Richard bitnami/discourse
 helm upgrade --namespace tls-kafka my-release bitnami/discourse --set discourse.host=CO2DISCOURSE --set discourse.password=Olivier --set postgresql.postgresqlPassword=Richard
 
 discourse loggin : CO2DISCOURSE
