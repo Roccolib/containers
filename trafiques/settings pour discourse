@@ -38,5 +38,5 @@ helm upgrade --namespace tls-kafka my-release bitnami/discourse --set discourse.
 discourse loggin : CO2DISCOURSE
 Pass : Olivier
 Posgres pass : bitnami
-
 helm upgrade my-release --set replicaCount=1,discourse.password=Olivier,postgresql.postgresqlPassword=Richard,discourse.skipInstall=true bitnami/discourse
+kubectl patch svc my-release-discourse -n tls-kafka -p '{"spec": {"type": "LoadBalancer", "externalIPs":["23.102.7.218"]}}'
