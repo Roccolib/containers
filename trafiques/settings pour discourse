@@ -16,7 +16,7 @@ This deployment will be incomplete until you configure Discourse with a resolvab
 
 2. Complete your Discourse deployment by running:
 
-  helm upgrade --namespace tls-kafka my-release bitnami/discourse --set discourse.host=$DISCOURSE_HOST --set discourse.password=$DISCOURSE_PASSWORD --set postgresql.postgresqlPassword=$POSTGRESQL_PASSWORD
+  helm upgrade --namespace tls-kafka my-release bitnami/discourse --set discourse.host=co2token --set discourse.password=Olivier --set postgresql.postgresqlPassword=Richard
 
 #####################################################################################
 ### WARNING: You did not change the default password for the PostgreSQL root user ###
