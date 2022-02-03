@@ -1,6 +1,8 @@
 minikube start --driver=docker
 helm install my-release bitnami/discourse --set service.type=ClusterIP --set ingress.enabled=true --set ingress.hosts[0].name=DOMAIN
 kubectl patch svc ingress-nginx-ingress-controller -n tls-kafka -p '{"spec": {"type": "LoadBalancer", "externalIPs":["40.115.103.119"]}}'
+kubectl logs my-release-discourse-cdf969485-knvg8 sidekiq
+
 
 helm upgrade --namespace tls-kafka my-release bitnami-azure/discourse    --set replicaCount=2,discourse.host=bn_discourse,discourse.password=bitnami1234,redis.auth.enabled=true,redis.auth.password=bitnami1234,postgresql.postgresqlPassword=bitnami1234,postgresql.postgresqlUsername=bn_discourse,ALLOW_EMPTY_PASSWORD=no,postgresql.postgresqlPostgresPassword=bitnami1234
  
