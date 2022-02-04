@@ -3,6 +3,7 @@ helm install my-release bitnami/discourse --set service.type=ClusterIP --set ing
 kubectl patch svc ingress-nginx-ingress-controller -n tls-kafka -p '{"spec": {"type": "LoadBalancer", "externalIPs":["40.115.103.119"]}}'
 kubectl logs my-release-discourse-cdf969485-knvg8 sidekiq
 helm upgrade --namespace tls-kafka my-release bitnami-azure/discourse    --set replicaCount=2,discourse.host=bn_discourse,discourse.password=bitnami1234,redis.auth.enabled=true,redis.auth.password=bitnami1234,postgresql.postgresqlPassword=bitnami1234,postgresql.postgresqlUsername=bn_discourse,ALLOW_EMPTY_PASSWORD=no,postgresql.postgresqlPostgresPassword=bitnami1234
+kubectl logs my-release-discourse-cdf969485-htv7g discourse
 
 export POSTGRES_PASSWORD=$(kubectl get secret --namespace default MY-RELEASE-postgresql -o jsonpath="{.data.postgresql-password}" | base64 --decode)
 echo $POSTGRES_PASSWORD
