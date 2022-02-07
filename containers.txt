@@ -1,0 +1,56 @@
+Containers :
+liste tous les containers : docker ls -a
+liste docker images : docker image ls or docker images
+run a container :  docker run -d wurstmeister/zookeeper
+supprimer docker image avec tag : docker rmi kafka-quickstart:0.10.2.0
+lancer les containers de kafka : docker-compose -f docker-compose.yml up -d
+stopper un container : docker container kill eef423a3aa60
+
+
+Kafka : https://towardsdatascience.com/how-to-install-apache-kafka-using-docker-the-easy-way-4ceb00817d8b
+connecter au bash de kafka : docker exec -it kafka /bin/sh
+creer un topic : kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic topicdetest
+lister tous les topics créés : kafka-topics.sh --list --zookeeper zookeeper:2181
+docker load -i zookeeperimage.tar.gz
+docker run -d zookzeeper
+docker load -i kafkaimage.tar.gz
+docker run -d kafka --net=container:zookeeper
+docker run -e ZOOKEEPER_CLIENT_PORT=2181 --name zookeeper confluent/zookeeper
+docker run --name kafka -e KAFKA_ADVERTISED_HOST_NAME=kafka -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_CREATE_TOPICS=testtopic:1:1 --net=container:zookeeper confluent/kafka
+
+
+
+
+envoyer un message de producer : kafka-console-producer.sh --broker-list localhost:9092 --topic topicdetest
+consommer les messages de consumer : kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topicdetest --from-beginning
+effacer un topic : kafka-topics.sh --zookeeper zookeeper:2181 --delete --topic topicdetest
+
+
+
+Discourse : https://www.digitalocean.com/community/tutorials/how-to-install-discourse-on-ubuntu-18-04-fr
+utilisateur root : sudo -s
+creer repertoire discourse : mkdir /var/discourse
+clonner l'image officielle de discourse : git clone https://github.com/discourse/discourse_docker.git /var/discourse
+
+editer fichier de config :
+	a.  - "templates/web.ssl.template.yml"
+	    - "templates/web.letsencrypt.ssl.template.yml"
+	b.   DISCOURSE_HOSTNAME: co2forum.westeurope.cloudapp.azure.com
+	c.   DISCOURSE_DEVELOPER_EMAILS: 'co2tokenforum@gmail.com'
+	d.   DISCOURSE_SMTP_ADDRESS: smtp.gmail.com
+  	     DISCOURSE_SMTP_PORT: 587
+	     DISCOURSE_SMTP_USER_NAME: co2tokenforum
+  	     DISCOURSE_SMTP_PASSWORD: "Azure2021"
+	     DISCOURSE_SMTP_DOMAIN: gmailcom # (address to send notifications from)
+  	     DISCOURSE_NOTIFICATION_EMAIL: co2tokenforum@gmailcom # (address to send notifications from)
+	e.   LETSENCRYPT_ACCOUNT_EMAIL: rfahd@hotmail.com
+lancer le container : ./launcher rebuild app
+appliquer parametres : ./discourse-setup
+
+If message "failled to bbostrap", ./discourse-doctor
+
+
+
+
+
+
