@@ -17,8 +17,8 @@ docker load -i zookeeperimage.tar.gz
 docker run -d zookzeeper
 docker load -i kafkaimage.tar.gz
 docker run -d kafka --net=container:zookeeper
-docker run -e ZOOKEEPER_CLIENT_PORT=2181 --name zookeeper zookeeper
-docker run --name kafka -e KAFKA_ADVERTISED_HOST_NAME=kafka -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_CREATE_TOPICS=testtopic:1:1 --net=container:zookeeper kafka
+docker run -d -e ZOOKEEPER_CLIENT_PORT=2181 --name zookeeper zookeeper
+docker run --name kafka -d -e KAFKA_ADVERTISED_HOST_NAME=kafka -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_CREATE_TOPICS=testtopic:1:1 --net=container:zookeeper kafka
 
 
 
