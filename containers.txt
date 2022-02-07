@@ -3,6 +3,7 @@ liste tous les containers : docker ls -a
 liste docker images : docker image ls or docker images
 run a container :  docker run -d wurstmeister/zookeeper
 supprimer docker image avec tag : docker rmi kafka-quickstart:0.10.2.0
+creer les images des conteneurs a partir de tar avec nouveau nom repertoire :  docker image  import kafkaimage.tar.gz kafkatoken:latest
 lancer les containers de kafka : docker-compose -f docker-compose.yml up -d
 stopper un container : docker container kill eef423a3aa60
 
@@ -15,8 +16,8 @@ docker load -i zookeeperimage.tar.gz
 docker run -d zookzeeper
 docker load -i kafkaimage.tar.gz
 docker run -d kafka --net=container:zookeeper
-docker run -e ZOOKEEPER_CLIENT_PORT=2181 --name zookeeper confluent/zookeeper
-docker run --name kafka -e KAFKA_ADVERTISED_HOST_NAME=kafka -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_CREATE_TOPICS=testtopic:1:1 --net=container:zookeeper confluent/kafka
+docker run -e ZOOKEEPER_CLIENT_PORT=2181 --name zookeeper zookeeper
+docker run --name kafka -e KAFKA_ADVERTISED_HOST_NAME=kafka -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_CREATE_TOPICS=testtopic:1:1 --net=container:zookeeper kafka
 
 
 
