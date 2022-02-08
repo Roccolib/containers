@@ -1,4 +1,10 @@
 Containers :
+docker image load --input zookeeperimage.tar.gz
+docker image ls
+docker tag wurstmeister/zookeeper:latest token/zookeeper:080222
+docker rmi wurstmeister/zookeeper
+docker-compose -f docker-compose.yml up -d
+
 liste tous les containers : docker ls -a
 liste docker images : docker image ls or docker images
 run a container :  docker run -d wurstmeister/zookeeper
@@ -7,6 +13,8 @@ supprimer image container : docker container rm 2b53e7cacf92
 creer les images des conteneurs a partir de tar avec nouveau nom repertoire :  docker image  import kafkaimage.tar.gz kafkatoken:latest
 lancer les containers de kafka : docker-compose -f docker-compose.yml up -d
 stopper un container : docker container kill eef423a3aa60
+detail d'un container :  docker container inspect 566083b3be4f
+
 
 
 Kafka : https://towardsdatascience.com/how-to-install-apache-kafka-using-docker-the-easy-way-4ceb00817d8b
