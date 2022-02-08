@@ -41,8 +41,9 @@ Discourse : https://www.digitalocean.com/community/tutorials/how-to-install-disc
 utilisateur root : sudo -s
 creer repertoire discourse : mkdir /var/discourse
 clonner l'image officielle de discourse : git clone https://github.com/discourse/discourse_docker.git /var/discourse
+appliquer parametres : ./discourse-setup
 
-editer fichier de config :
+editer fichier de config (containers/app.yml) :
 	a.  - "templates/web.ssl.template.yml"
 	    - "templates/web.letsencrypt.ssl.template.yml"
 	b.   DISCOURSE_HOSTNAME: co2forum.westeurope.cloudapp.azure.com
@@ -55,7 +56,6 @@ editer fichier de config :
   	     DISCOURSE_NOTIFICATION_EMAIL: co2tokenforum@gmailcom # (address to send notifications from)
 	e.   LETSENCRYPT_ACCOUNT_EMAIL: rfahd@hotmail.com
 lancer le container : ./launcher rebuild app
-appliquer parametres : ./discourse-setup
 
 If message "failled to bbostrap", ./discourse-doctor
 
