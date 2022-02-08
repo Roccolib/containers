@@ -1,3 +1,6 @@
+sudo git clone https://github.com/Roccolib/discourse /ttt
+
+
 Containers :
 docker image load --input zookeeperimage.tar.gz
 docker image ls
