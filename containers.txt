@@ -46,7 +46,7 @@ Discourse : https://www.digitalocean.com/community/tutorials/how-to-install-disc
 utilisateur root : sudo -s
 creer repertoire discourse : mkdir /var/discourse
 clonner l'image officielle de discourse : git clone https://github.com/discourse/discourse_docker.git /var/discourse
-appliquer parametres : ./discourse-setup
+appliquer parametres : ./discourse-setup --without test development
 
 editer fichier de config (containers/app.yml) :
 	a.  - "templates/web.ssl.template.yml"
