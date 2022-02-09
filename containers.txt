@@ -1,6 +1,7 @@
 sudo git clone https://github.com/Roccolib/discourse /ttt
 docker save -o discourse_app.tar:090222 local_discourse/app:latest
 !!!vider docker!!! : docker system prune
+ecouter un port : sudo netstat -lpn |grep :443
 
 Containers :
 docker image load --input zookeeperimage.tar.gz
