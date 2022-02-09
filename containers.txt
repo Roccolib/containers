@@ -7,6 +7,8 @@ docker image ls
 docker tag wurstmeister/zookeeper:latest token/zookeeper:080222
 docker rmi wurstmeister/zookeeper
 docker-compose -f docker-compose.yml up -d
+appli speciale a installer : sudo dive bcd525e1be91 
+
 
 liste tous les containers : docker ls -a
 liste docker images : docker image ls or docker images
