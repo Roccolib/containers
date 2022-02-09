@@ -1,5 +1,5 @@
 sudo git clone https://github.com/Roccolib/discourse /ttt
-
+docker save -o discourse_app.tar:090222 local_discourse/app:latest
 
 Containers :
 docker image load --input zookeeperimage.tar.gz
