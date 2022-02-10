@@ -1,3 +1,4 @@
+transfert de fichiers de vm vers azure stockage : touch kafka.tar
 sudo git clone https://github.com/Roccolib/discourse /ttt
 docker save -o discourse_app.tar:090222 local_discourse/app:latest
 !!!vider docker!!! : docker system prune
@@ -11,6 +12,9 @@ docker rmi wurstmeister/zookeeper
 docker-compose -f docker-compose.yml up -d
 appli speciale a installer : sudo dive bcd525e1be91 
 
+transfert d'image :
+tarrer l'image :  docker save -o kafka.tar 2dd91ce2efe1
+loader l'image : docker load -i kafka.tar
 
 liste tous les containers : docker ls -a
 liste docker images : docker image ls or docker images
