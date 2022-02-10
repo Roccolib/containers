@@ -53,7 +53,7 @@ appliquer parametres : ./discourse-setup --without test development
 editer fichier de config (containers/app.yml) :
 	a.  - "templates/web.ssl.template.yml"
 	    - "templates/web.letsencrypt.ssl.template.yml"
-	b.   DISCOURSE_HOSTNAME: co2forum.westeurope.cloudapp.azure.com
+	b.   DISCOURSE_HOSTNAME: forumco2.westeurope.cloudapp.azure.com
 	c.   DISCOURSE_DEVELOPER_EMAILS: 'co2tokenforum@gmail.com'
 	d.   DISCOURSE_SMTP_ADDRESS: smtp.gmail.com
   	     DISCOURSE_SMTP_PORT: 587
