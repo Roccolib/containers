@@ -1,3 +1,5 @@
+telecharger límage du container Ubuntu : docker pull ubuntu
+lancer le container Ubuntu : sudo docker run -it ubuntu bash
 docker-ce:
 	sudo apt install git apt-transport-https ca-certificates curl software-properties-common
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -9,7 +11,7 @@ docker-compose :
 	 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	 sudo chmod +x /usr/local/bin/docker-compose
 
-copie fichier vers container :  docker cp images.tar.gz 4abb70ccbd74:/images.tar.gz
+copie fichier vers containera partir dúne autre session :  docker cp images.tar.gz 4abb70ccbd74:/images.tar.gz
 
 transfert de fichiers de vm vers azure stockage : touch kafka.tar
 sudo git clone https://github.com/Roccolib/discourse /ttt
