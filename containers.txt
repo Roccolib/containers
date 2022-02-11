@@ -9,6 +9,8 @@ docker-compose :
 	 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	 sudo chmod +x /usr/local/bin/docker-compose
 
+copie fichier vers container :  docker cp images.tar.gz 4abb70ccbd74:/images.tar.gz
+
 transfert de fichiers de vm vers azure stockage : touch kafka.tar
 sudo git clone https://github.com/Roccolib/discourse /ttt
 docker save -o discourse_app.tar:090222 local_discourse/app:latest
