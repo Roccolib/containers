@@ -7,6 +7,8 @@ docker-ce:
 	add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
 	apt update
 	apt install docker-ce
+	DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends \
+      install build-essential
 	systemctl start docker
 
 docker-compose :
