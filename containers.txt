@@ -1,5 +1,5 @@
 telecharger límage du container Ubuntu : docker pull ubuntu
-lancer le container Ubuntu : sudo docker run -it ubuntuco2:110222 bash
+lancer le container Ubuntu : sudo docker run -it dubuntud/discourse:120222 bash
 docker-ce:
 	apt-get update
 	apt install git apt-transport-https ca-certificates curl software-properties-common
