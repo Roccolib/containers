@@ -46,11 +46,16 @@ stopper un container : docker container kill eef423a3aa60
 detail d'un container :  docker container inspect 566083b3be4f
 
 
-
+dans le container:
 Kafka : https://towardsdatascience.com/how-to-install-apache-kafka-using-docker-the-easy-way-4ceb00817d8b
 connecter au bash de kafka : docker exec -it kafka /bin/sh
 creer un topic : kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic topicdetest
 lister tous les topics créés : kafka-topics.sh --list --zookeeper zookeeper:2181
+
+en dehors du container :
+producer :  docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-producer.sh --bootstrap-server kafka:9092 --topic test_topic
+consumer : docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic test_topic --from-beginning
+
 docker load -i zookeeperimage.tar.gz
 docker run -d zookzeeper
 docker load -i kafkaimage.tar.gz
