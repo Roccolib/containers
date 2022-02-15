@@ -1,0 +1,10 @@
+
+produire message en dehors du container :
+  docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-producer.sh --bootstrap-server kafka:9092 --topic topicDiscMessage
+ecouter message en dehors du container :
+  docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic test_topic --from-beginning
+produire a partir du meme container :
+
+ecouter a partir du meme container :
+
+produire a partir d'fichier python d'un autre container :
