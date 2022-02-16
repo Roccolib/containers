@@ -1,4 +1,5 @@
 
+docker-compose -f docker-compose.yml up -d
 créer un topic :
   docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-topics.sh --bootstrap-server kafka:9093 --create --topic topicDiscMessage
 lister les topics :
