@@ -5,11 +5,11 @@ créer un topic :
 lister les topics :
   docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-topics.sh --bootstrap-server kafka:9092 --list
 effacer topic :
-docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-topics.sh --bootstrap-server kafka:9092 --delete --topic topicdisc
+docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-topics.sh --bootstrap-server kafka:9092 --delete --topic topicdiscMessage
 produire message en dehors du container :
   docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-producer.sh --bootstrap-server kafka:9092 --topic topicDiscMessage
 ecouter message en dehors du container :
-  docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic topicDisMessage --from-beginning
+  docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic topicDiscMessage --from-beginning
 produire a partir du meme container :
 
 ecouter a partir du meme container :
