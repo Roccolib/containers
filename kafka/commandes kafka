@@ -1,4 +1,7 @@
 
+créer un topic :
+docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-topics.sh --bootstrap-server kafka:9092 --create --topic topicDiscMessage
+
 produire message en dehors du container :
   docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-producer.sh --bootstrap-server kafka:9092 --topic topicDiscMessage
 ecouter message en dehors du container :
