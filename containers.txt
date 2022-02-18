@@ -38,6 +38,7 @@ loader l'image : docker load -i kafka.tar
 liste tous les containers : docker ls -a
 liste docker images : docker image ls or docker images
 run a container :  docker run -d wurstmeister/zookeeper
+run a persistant container : docker run -d -f token/python:120222
 supprimer docker container avec tag : docker rmi kafka-quickstart:0.10.2.0
 supprimer image container : docker container rm 2b53e7cacf92
 creer les images des conteneurs a partir de tar avec nouveau nom repertoire :  docker image  import kafkaimage.tar.gz kafkatoken:latest
