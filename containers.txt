@@ -32,7 +32,9 @@ lancer les 5 api python sans container:
 	open a terminal then : python CO2extracted.py
 	open a terminal then : python consumer.py
 	open a terminal then : python consumer2.py
-
+lancer chaque api de son container :
+	docker image load --input pythonapps:120222
+	docker run -d -t pythonapps:120222
 
 
 telecharger límage du container Ubuntu : docker pull ubuntu
