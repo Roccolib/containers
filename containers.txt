@@ -17,6 +17,7 @@ docker-compose :
 
 copie fichier vers containera partir dúne autre session :  docker cp images.tar.gz 4abb70ccbd74:/images.tar.gz
 
+renomer un container : sudo docker rename app discourseapp
 transfert de fichiers de vm vers azure stockage : touch kafka.tar
 sudo git clone https://github.com/Roccolib/discourse /ttt
 docker save -o discourse_app.tar:090222 local_discourse/app:latest
