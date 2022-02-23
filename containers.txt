@@ -20,7 +20,7 @@ copie fichier vers containera partir dúne autre session :  docker cp images.tar
 renomer un container : sudo docker rename app discourseapp
 transfert de fichiers de vm vers azure stockage : touch kafka.tar
 sudo git clone https://github.com/Roccolib/discourse /ttt
-docker save -o discourse_app.tar:090222 local_discourse/app:latest
+docker save -o images/discourse_app.tar:090222 local_discourse/app:latest
 !!!vider docker!!! : docker system prune
 ecouter un port : sudo netstat -lpn |grep :443
 
@@ -65,7 +65,10 @@ docker run -d kafka --net=container:zookeeper
 docker run -d -e ZOOKEEPER_CLIENT_PORT=2181 --name zookeeper zookeeper
 docker run --name kafka -d -e KAFKA_ADVERTISED_HOST_NAME=kafka -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -e KAFKA_CREATE_TOPICS=testtopic:1:1 --net=container:zookeeper kafka
 
-
+fabriquer un fichier d'ececution des 5 api python:
+sudo nano boucle.sh (python orchestre.py & python producer.py & python CO2extracted.py & python consumer.py && fg)
+chmod +x script-boucle.sh
+./boucle.sh
 
 
 envoyer un message de producer : kafka-console-producer.sh --broker-list localhost:9092 --topic topicdetest
