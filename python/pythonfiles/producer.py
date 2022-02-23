@@ -59,7 +59,7 @@ def post_messageBroker():
      producer.flush()
      return('image processed')
 
-else:
+ else:
      contentType = "text/plain"
      print("data au mauvais format recuperes pour text", data)
      producer = KafkaProducer(bootstrap_servers='localhost:29092', request_timeout_ms=1)
