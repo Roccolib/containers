@@ -1,3 +1,40 @@
+sauvegarder un container dans une image:
+	docker commit -p 7417191644dc local_discourse:210222
+archiver une image :
+	docker save -o local_discourse.tar local_discourse
+
+Procédure pour charger et lancer Discourse Forum:
+charger l'image tar du 220222: 
+	cd ~/images/discourse
+	sudo docker image load --input discourse_app.tar:220222
+charger le container :
+	 docker run discourse_app
+lancer le container :
+	 docker start discourse_app
+dans browser:
+https://co22tok.westeurope.cloudapp.azure.com
+Credentials :
+	olivier ; 1234567890123456
+
+Procédure pour lancer kafka/zookeeepr apis non containairisés :
+	cd ~/pythtest
+charger les images zookeeper kafka:
+	sudo docker load -i zookeeper.tar
+	 docker tag 3f43f72cb283 token/zookeeper:120222
+	sudo docker load -i kafka.tar
+	 docker tag 2dd91ce2efe1 token/kafka:120222
+Activer les containers kafka, zookeeper et le reseau kafka:
+lancer les containers de kafka et zookeeper:
+	docker-compose -f docker-compose.yml up -d
+lancer les 5 api python sans container:
+	open a terminal then : python orchestre.py
+	open a terminal then : python producer.py
+	open a terminal then : python CO2extracted.py
+	open a terminal then : python consumer.py
+	open a terminal then : python consumer2.py
+
+
+
 telecharger límage du container Ubuntu : docker pull ubuntu
 lancer le container Ubuntu : sudo docker run -it dubuntud/discourse:120222 bash
 docker-ce:
