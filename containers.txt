@@ -9,7 +9,7 @@ charger l'image tar du 220222:
 	sudo docker image load --input discourse_app.tar:220222
 	 docker tag a6f88b9ed9f0 discourse_app:220222
 charger le container :
-	 docker run -t discourse_app:220222
+	 docker run -d -t discourse_app:220222
 	 docker rename b911001da1f8 discourse_app
 lancer le container :
 	 docker start discourse_app
