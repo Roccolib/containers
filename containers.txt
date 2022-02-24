@@ -7,6 +7,7 @@ Procédure pour charger et lancer Discourse Forum:
 charger l'image tar du 220222: 
 	cd ~/bases
 	sudo docker image load --input discourse_app.tar:220222
+	 docker tag a6f88b9ed9f0 discourse_app:220222
 charger le container :
 	 docker run discourse_app
 lancer le container :
