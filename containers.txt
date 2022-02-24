@@ -5,7 +5,7 @@ archiver une image :
 
 Procédure pour charger et lancer Discourse Forum:
 charger l'image tar du 220222: 
-	cd ~/images/discourse
+	cd ~/bases
 	sudo docker image load --input discourse_app.tar:220222
 charger le container :
 	 docker run discourse_app
