@@ -3,6 +3,20 @@ sauvegarder un container dans une image:
 archiver une image :
 	docker save -o local_discourse.tar local_discourse
 
+
+loader tous les containers: 
+	cd ~/bases
+	ls -1 *.tar | xargs --no-run-if-empty -L 1 docker load -i
+Procédure pour charger et lancer Discourse Forum:
+	docker tag a6f88b9ed9f0 discourse_app:220222
+	docker run -d -t discourse_app:220222
+	docker rename b911001da1f8 discourse_app (changer numerotation du container)
+
+Procédure pour lancer kafka/zookeeepr apis containairisés :
+	docker-compose -f docker-compose.yml up -d  (pour l'instant a faire deux fois car consumer depend de orchestre)
+	
+
+
 Procédure pour charger et lancer Discourse Forum:
 charger l'image tar du 220222: 
 	cd ~/bases
