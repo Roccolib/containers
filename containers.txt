@@ -1,7 +1,7 @@
 sauvegarder un container dans une image:
-	docker commit -p 7417191644dc local_discourse:210222
+	docker commit -p discourse_app discourse_app:210222
 archiver une image :
-	docker save -o local_discourse.tar local_discourse
+	docker save -o discourse_app.tar discourse_app
 taguer une image :
 	(docker tag a6f88b9ed9f0 discourse_app:220222)
 renomer un container: 
