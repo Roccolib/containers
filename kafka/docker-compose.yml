@@ -1,29 +1,73 @@
-version: '3'
-
+version: '2'
 services:
+  orchestrepy:
+    image: orchestrepy:120222
+    container_name: orchestre
+    command: python /home/pythonfiles/orchestre.py
+    networks:
+      - kafka_network
+    ports:
+      - 5000:5000
+  producerpy:
+    image: producerpy:120222
+    container_name: producer
+    command: python /home/pythonfiles/producer.py
+    networks:
+      - kafka_network
+    ports:
+      - 5001:5001
+  co2extracted:
+    image: co2extracted:120222
+    container_name: co2extracted
+    command: python /home/pythonfiles/CO2extracted.py
+    networks:
+      - kafka_network
+    ports:
+      - 5003:5003
+  consumer:
+    image: consumerpy:120222
+    container_name: consumer
+    command: python /home/pythonfiles/consumer.py
+    networks:
+      - kafka_network
+    ports:
+      - 5002:5002
+    depends_on:
+      - "kafka"
+  consumer2:
+    image: consumerpy2:120222
+    container_name: consumer2
+    command: python /home/pythonfiles/consumer2.py
+    networks:
+      - kafka_network
+    ports:
+      - 5004:5004
+    depends_on:
+      - "kafka"
   zookeeper:
     image: token/zookeeper:120222
     container_name: zookeeper
     networks:
       - kafka_network
-#    ports:
-#      - "2181:2181"
   kafka:
     image: token/kafka:120222
     container_name: kafka
     networks:
       - kafka_network
-#    ports:
-#      - "29092:29092"
+    ports:
+      - 29092:29092
     environment:
-      KAFKA_LISTENERS: EXTERNAL_SAME_HOST://0.0.0.0:29092,INTERNAL://0.0.0.0:9092
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL_SAME_HOST://localhost:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL_SAME_HOST:PLAINTEXT
+      #kafka: 9092 for internal trafic on the docker network
+      #localhost:29092 for trafic from the docker-host machine ('localhost)
+      KAFKA_LISTENERS: EXTERNAL_SAME_HOST://:29092,EXTERNAL_DIFFERENT_HOST://:29093,INTERNAL://:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL_SAME_HOST://localhost:29092,EXTERNAL_DIFFERENT_HOST://20.71.35.142:29093   #co22tok.westeurope.cloudapp.azure.com:29093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL_SAME_HOST:PLAINTEXT,EXTERNAL_DIFFERENT_HOST:PLAINTEXT
+#      KAFKA_LISTENERS: EXTERNAL_SAME_HOST://:29092,INTERNAL://:9092,EXTERNAL_DIFFERENT_HOST://co22tok.westeurope.cloudapp.azure.com:29093
+#      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL_SAME_HOST://localhost:29092,EXTERNAL_DIFFERENT_HOST://:29093
+#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL_SAME_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_CREATE_TOPICS: "topicDiscMessage:1:1"
 
 networks:
   kafka_network:
     name: kafka_token_discourse_net
-#      KAFKA_ADVERTISED_HOST_NAME: localhost
