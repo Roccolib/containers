@@ -1,0 +1,57 @@
+install discourse :
+passer en mode root permanent:
+	sudo -s
+creer un registre pour les fichiers hors container (install et settings):
+	mkdir /var/discourse
+clonner l'image officielle des fichiers discourse:
+	git clone https://github.com/discourse/discourse_docker.git /var/discourse
+entrer dans repertoir des fichiers install:
+	cd /var/discourse
+lancer install de discourse:
+	./discourse-setup
+
+
+
+Installation kafka:
+telecharger wurstmeister/kafka:
+	docker pull wurstmeister/kafka
+telecharger wurstmeister/zookeeper:
+	docker pull wurstmeister/zookeeper
+telecharger python/alpine:
+	docker pull pythopn:alpine
+lancer container python:
+	docker run -d -t python
+acceder ua bash container python:
+	docker exec -it python /bin/sh
+update des sources du python/ubuntu:
+	apk update
+install de pip3:
+	apk add py3-pip
+install de Flask:
+	pip3 install Flask
+install de kafka-python:
+	pip3 install kafka-python
+install de requests:
+	pip3 install requests
+install de Git (telechargement de Github):
+	apk add git
+telechargement des fichiers py de Github:
+	git clone https://github.com/Roccolib/containers/tree/main/python/pythonfiles
+Creer un dossier /bases/ y acceder puis:
+faire une copie en l'etat du container actif (a partir d'un autre terminal):
+	docker commit -p pythonpy orchestrepy:120222
+	repeter la meme operation pour : producerpy, co2extracted, consumerpy et consumerpy2
+sauvegarder la copie de chaque nouveau container:
+	docker save -o orchestrepy.tar orchestrepy:120222
+faire une copie de discourse_app:
+		docker commit -p discourse_app discourse_app:220222
+sauvegarder copie du container actif discourse_app:
+		docker save -o discourse_app.tar discourse_app:220222
+lancer les containers kafka et zookeeper:
+	docker run -d -t wurstmeister/kafka
+sauvegarder les containers kafka et zookeeper:
+	docker tag wurstmeister/kafka token/kafka:120222
+	docker save -o kafka.tar token/kafka:120222
+copier le dossier /discourse/ de /var/ vers /bases/:
+	git clone https://github.com/Roccolib/containers/blob/main/docker-compose.yml
+
