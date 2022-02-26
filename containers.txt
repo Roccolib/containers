@@ -6,7 +6,8 @@ taguer une image :
 	(docker tag a6f88b9ed9f0 discourse_app:220222)
 renomer un container: 
 	docker rename b911001da1f8 discourse_app (changer numerotation du container)
-
+conencter au bash de kafka: 
+	connecter au bash de kafka : docker exec -it kafka /bin/sh
 clear machine :
 	stopper les containers:
 			docker kill $(docker ps -q)
