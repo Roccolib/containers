@@ -162,7 +162,7 @@ editer fichier de config (containers/app.yml) :
 	     DISCOURSE_SMTP_DOMAIN: gmailcom # (address to send notifications from)
   	     DISCOURSE_NOTIFICATION_EMAIL: co2tokenforum@gmailcom # (address to send notifications from)
 	e.   LETSENCRYPT_ACCOUNT_EMAIL: rfahd@hotmail.com
-lancer le container : ./launcher rebuild app
+lancer le container : ./launcher rebuild co2token
 
 If message "failled to bbostrap", ./discourse-doctor
 
