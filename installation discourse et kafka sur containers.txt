@@ -9,7 +9,8 @@ entrer dans repertoir des fichiers install:
 	cd /var/discourse
 lancer install de discourse:
 	./discourse-setup
-
+lancer le container : ./launcher rebuild co2token
+If message "failled to bbostrap", ./discourse-doctor
 
 
 Installation kafka:
