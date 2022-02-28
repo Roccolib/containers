@@ -10,6 +10,11 @@ produire message en dehors du container :
   docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-producer.sh --bootstrap-server kafka:9092 --topic topicDiscMessage
 ecouter message en dehors du container :
   docker run -it --rm --network kafka_token_discourse_net token/kafka:120222 kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic topicDiscMessage --from-beginning
+lister les containers du reseau docker:
+  docker network inspect -f '{{range .Containers}}{{.Name}} {{end}}' kafka_token_discourse_net
+Find out if an IP address is reachable from a container
+  docker exec [containerA] ping [containerB or ip_address] -c2
+
 produire a partir du meme container :
 
 ecouter a partir du meme container :
