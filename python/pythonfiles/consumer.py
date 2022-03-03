@@ -10,7 +10,6 @@ consumer=KafkaConsumer(
     bootstrap_servers = ['localhost:29092'],
     group_id='test-consumer-group',
 #    value_deserializer=lambda m: json.loads(m.decode('utf-8')),
-#    value_deserializer=lambda m: json.loads(m.decode('utf-8')),
     enable_auto_commit=True
 )
 #lancer le module Flask à l'execution de l'api
