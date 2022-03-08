@@ -1,3 +1,5 @@
+purger snap /dev/loop :
+	sudo apt purge snapd
 sauvegarder un container dans une image:
 	docker commit -p discourse_app discourse_app:220222
 archiver une image :
