@@ -1,5 +1,7 @@
 purger snap /dev/loop :
 	sudo apt purge snapd
+forcer un container a rester actif:
+	 docker run -d ubuntu tail -f /dev/null
 sauvegarder un container dans une image:
 	docker commit -p discourse_app discourse_app:220222
 archiver une image :
