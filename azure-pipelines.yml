@@ -23,3 +23,6 @@ steps:
   inputs:
     scriptSource: 'filePath'
     scriptPath: 'orchestre.py'
+- task: PyLint@0
+  inputs:
+    pythonroot: 'C:\agent\_work\2\s\orchestre.py'
