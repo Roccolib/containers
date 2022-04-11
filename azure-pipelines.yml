@@ -9,7 +9,7 @@ trigger:
 pool:
   name: Default
   demands: 
-   - agent.name -equals DESKTOP-7MGI96K
+   - agent.name -equals LNVRIC
 
 steps:
 - script: echo Hello, world!
@@ -19,10 +19,8 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
-- task: PythonScript@0
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: 'orchestre.py'
-- task: PyLint@0
-  inputs:
-    pythonroot: 'C:\agent\_work\2\s\orchestre.py'
+- task: Ansible@0
+      inputs:
+            ansibleInterface: 'agentMachine'
+            playbookPathOnAgentMachine: 'playbook.yml'
+            inventoriesAgentMachine: 'noInventory'
