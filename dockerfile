@@ -2,6 +2,12 @@
 from ubuntu:kub
 #maintainer of the image
 LABEL maintainer="Richard"
+#create directory
+RUN mkdir /fichiers
+#copiying source code to container
+COPY /archives/pythonfiles ./fichiers
+#home directory for container
+WORKDIR /fichiers
 # Update the image to the latest packages
 RUN apt-get update
 #add pip repository
